@@ -1,14 +1,14 @@
-import { ApolloProvider } from '@apollo/client'
-import '../styles/globals.css'
-import { CartProvider } from './public/Context.jsx'
-import client from './public/Context.jsx/client'
-
+import { ApolloProvider } from "@apollo/client";
+import "../styles/globals.css";
+import client from "../Apollo/client";
+import {FavoritesProvider} from "../context/CharactersProvider";
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <CartProvider>
+      <FavoritesProvider>
         <Component {...pageProps} />
-      </CartProvider>
-  </ApolloProvider>
-  )}
-export default MyApp
+      </FavoritesProvider>
+    </ApolloProvider>
+  );
+}
+export default MyApp;
