@@ -1,19 +1,21 @@
 import { useQuery } from "@apollo/client";
 import { useContext, useEffect, useState } from "react";
 import { GET_CHARACTERS } from "../Apollo/Queries/Characters";
-import { FavoritesContext } from "../context/CharactersProvider";
-
+import Dashboard from "../components/Dashboard";
+import Favorites from "../components/Favorites";
+import SideBarContainer from "../components/SideBar";
+import { FavoritesContext } from "../context/FavoritesProvider";
 export default function Home() {
-  const {characters} = useContext(FavoritesContext)
-  console.log(characters);
-  const obj={
-    name:"hola",
-    image:"sasa"
-  }
-  return(
-    <div>
-      {obj.hasOwnProperty('image') ? <p>Ramon</p>: <p>ricardo</p>}
-      DashBoard
+  const [section, setSection] = useState("favorites");
+  return (
+    <div className="principal-container">
+      <SideBarContainer setSection={setSection} />
+      <div className="dashboard">
+        {section == "favorites" && <Favorites />}
+        {section == "characters" && <p>Characters</p>}
+        {section == "episodes" && <p>Episodes</p>}
+        {section == "locations" && <p>Locations</p>}
+      </div>
     </div>
-  )
+  );
 }

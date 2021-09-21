@@ -1,0 +1,6 @@
+.principal-container{
+  display: flex;
+}
+.dashboard{
+  width: 80%;
+}

@@ -1,0 +1,14 @@
+.sidebar{
+  width: 20%;
+  height: 100vh;
+  background-color: rgb(52, 68, 84);
+}
+a{
+  color: white;
+  text-transform: uppercase;
+  margin:20px;
+  margin-top: 20px;
+}
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
