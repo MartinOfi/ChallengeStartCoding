@@ -1,4 +1,4 @@
-const Card = ({ item }) => {
+const Card = ({ item , handleAddFavorite}) => {
   return (
     <div className="card shadow-sm m-3">
       {item.hasOwnProperty("image") && (
@@ -6,9 +6,9 @@ const Card = ({ item }) => {
       )}
       <div className="card-body">
         <h5 className="card-title">{item.name}</h5>
-        <a href="#" className="btn btn-primary">
-         See Details
-        </a>
+        <button className="btn btn-primary" onClick={()=>handleAddFavorite(item)}>
+         Add Favorites
+        </button>
       </div>
     </div>
   );

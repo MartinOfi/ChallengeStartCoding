@@ -1,7 +1,11 @@
+html,body{
+  padding-bottom: 0px;
+}
 *{
   margin:0;
   padding: 0;
 }
+
 @import 'home.css';
 @import 'sidebar.css';
 @import 'card.css'

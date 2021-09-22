@@ -3,7 +3,7 @@ import { FavoritesContext } from "../../context/FavoritesProvider";
 import Card from "../Card";
 
 const Favorites = () => {
-  const { favorites } = useContext(FavoritesContext);
+  const { favorites ,handleAddFavorite } = useContext(FavoritesContext);
 
   return (
     <div className="text-center">
@@ -11,7 +11,7 @@ const Favorites = () => {
       <div className="d-flex justify-content-center flex-wrap">
         {favorites
           ? favorites.map((item, i) => {
-              return <Card item={item} key={i} />;
+              return <Card item={item} handleAddFavorite={handleAddFavorite} key={i} />;
             })
           : null}
       </div>

@@ -14,9 +14,13 @@ export const FavoritesProvider = ({ children }) => {
       window.localStorage.setItem('favorites',JSON.stringify(favorites))
     }
   }, []);
+  const handleAddFavorite=(item)=>{
+    setFavorites([...favorites,item])
+    window.localStorage.setItem('favorites',JSON.stringify([...favorites,item]))
+  }
   return (
     <FavoritesContext.Provider
-      value={{ favorites}}
+      value={{ favorites ,handleAddFavorite}}
     >
       {children}
     </FavoritesContext.Provider>
