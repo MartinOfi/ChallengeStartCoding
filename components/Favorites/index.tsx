@@ -4,7 +4,6 @@ import Card from "../Card";
 
 const Favorites = () => {
   const { favorites ,handleAddFavorite } = useContext(FavoritesContext);
-
   return (
     <div className="text-center">
       <h1 className="my-5">Favorites</h1>

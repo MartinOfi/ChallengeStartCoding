@@ -15,8 +15,17 @@ export const FavoritesProvider = ({ children }) => {
     }
   }, []);
   const handleAddFavorite=(item)=>{
-    setFavorites([...favorites,item])
-    window.localStorage.setItem('favorites',JSON.stringify([...favorites,item]))
+    const favoritesStorage=JSON.parse(window.localStorage.getItem('favorites'))
+    const isFinded = favoritesStorage.find(ele=> ele.id == item.id)
+    if(!isFinded){
+      setFavorites([...favorites,item])
+      window.localStorage.setItem('favorites',JSON.stringify([...favorites,item]))
+    }
+    else{
+      favoritesStorage.splice(favoritesStorage.indexOf(isFinded),1)
+      setFavorites(favoritesStorage)
+      window.localStorage.setItem('favorites',JSON.stringify(favoritesStorage))
+    }
   }
   return (
     <FavoritesContext.Provider

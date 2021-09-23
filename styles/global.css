@@ -1,5 +1,6 @@
 html,body{
   padding-bottom: 0px;
+  border-top: rgb(144, 156, 220) 1px solid;
 }
 *{
   margin:0;
