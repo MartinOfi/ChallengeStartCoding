@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FavoriteStar } from "./favoriteStar";
 
-const Card = ({ item, handleAddFavorite }) => {
+const Card = ({ item,page=""}) => {
   return (
     <div className="card shadow-sm m-3">
       {item.hasOwnProperty("image") && (
@@ -9,7 +9,7 @@ const Card = ({ item, handleAddFavorite }) => {
           <img src={item.image} className="card-img-top" alt="" />
             <FavoriteStar
               item={item}
-              handleAddFavorite={handleAddFavorite}
+              page={page}
             />
         </div>
       )}
