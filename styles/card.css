@@ -1,31 +1,35 @@
-.card{
-  width: 150px;
-  height: 300px;
+.card-total {
+  transition: all ease-in-out 200ms;
+  background-color: white;
 }
-.image-icon{
+.card-total:hover {
+  transform: translateY(-20px);
+  background-color: rgb(39, 134, 230);
+  border-radius: 25px;
+}
+.image-icon {
   position: relative;
 }
-.image-icon svg{
+.image-icon svg {
   color: yellow;
   position: absolute;
   top: 2px;
   right: 2px;
-  
 }
-.image-icon svg:hover{
+.image-icon svg:hover {
   color: black;
 }
-.btn.btn-light{
+.btn.btn-light {
   height: 40px;
   padding: 0;
-  margin:0;
+  margin: 0;
 }
-.star{
+.star {
   cursor: pointer;
 }
-.btn-light{
+.btn-light {
   background-color: white !important;
 }
-.ant-pagination a{
+.ant-pagination a {
   margin-top: 2px !important;
 }

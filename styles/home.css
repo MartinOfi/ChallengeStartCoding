@@ -1,7 +1,31 @@
 .principal-container{
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
   height: auto;
 }
+@media only screen and (max-width: 500px) {
+  .principal-container{
+    grid-template-columns: 1fr;
+  }
+  .sidebar{
+    min-height: 15vh !important;
+  }
+  .list-group{
+    margin: 35px 0;
+    flex-direction: row !important;
+    justify-content: space-around;
+    list-style:none;
+    
+  }
+}
 .dashboard{
-  width: 80%;
+  background-color: rgb(243, 243, 243);
+  min-height: 100vh;
+}
+.ant-spin-lg .ant-spin-dot {
+  font-size: 74px !important;
+}
+.ant-spin-lg .ant-spin-dot i {
+    width: 40px !important;
+    height: 40px !important;
 }
