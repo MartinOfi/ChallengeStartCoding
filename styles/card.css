@@ -23,3 +23,9 @@
 .star{
   cursor: pointer;
 }
+.btn-light{
+  background-color: white !important;
+}
+.ant-pagination a{
+  margin-top: 2px !important;
+}
