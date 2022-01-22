@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { ApolloError, useQuery } from "@apollo/client";
 import { useContext, useEffect, useState } from "react";
 import {
   GET_CHARACTERS,
@@ -10,14 +10,21 @@ import Card from "../Card";
 import Favorites from "../Favorites";
 import { Pagination, Space, Spin } from "antd";
 import "antd/dist/antd.css";
-const CardsContainer = ({ option }) => {
+const CardsContainer = ({ option, search }) => {
   const [page, setPage] = useState(1);
+  const queriesVars = {
+    variables: {
+      search: search,
+      page: page,
+    },
+  };
   const { data, error, loading } = useQuery(
     option == "characters"
-      ? GET_CHARACTERS(page)
+      ? GET_CHARACTERS
       : option == "locations"
-      ? GET_LOCATIONS(page)
-      : GET_EPISODES(page)
+      ? GET_LOCATIONS
+      : GET_EPISODES,
+    queriesVars
   );
   if (loading) {
     return (
@@ -25,16 +32,15 @@ const CardsContainer = ({ option }) => {
         <Space size="large">
           <Spin size="large" />
         </Space>
-        
       </div>
     );
   }
   if (error) {
-    return <p>Error..</p>;
+    console.log(error.message);
+    return <h6>Not found, try with other name</h6>;
   }
   return (
     <div className="text-center pb-3">
-      <h1 className="my-1 text-capitalize">{option}</h1>
       <div className="d-flex justify-content-center flex-wrap">
         {data &&
           option == "characters" &&
