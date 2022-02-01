@@ -5,7 +5,8 @@ import LocationIcon from "../Icons/LocationIcon"
 
 const SideBarContainer=({setSection})=>{
 return(
-  <div className="sidebar">
+  <div className="sidebar ">
+    <img src="./images/banner.png" alt="banner" width={"100%"} className="mx-auto"/>
     <ul className="list-group">
       <li onClick={()=>setSection("favorites")}><a href="#" className="text-white h6"><FavIcon/>Favorites</a></li>
       <li onClick={()=>setSection("characters")}><a href="#" className="text-white h6"><CharacterIcon/>Characters</a></li>
