@@ -4,7 +4,7 @@
 }
 .card-total:hover {
   transform: translateY(-20px);
-  background-color: rgb(39, 134, 230);
+  background-color: rgba(1, 122, 243, 0.466);
   border-radius: 25px;
 }
 .image-icon {

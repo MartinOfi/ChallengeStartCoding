@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.12",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.17",
     "antd": "^4.18.4",
     "apollo-upload-client": "^16.0.0",
     "bootstrap": "^5.0.0-beta3",
