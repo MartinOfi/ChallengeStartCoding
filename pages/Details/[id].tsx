@@ -65,11 +65,11 @@ const DetailPage = () => {
       )}
       {!loading && data && (
         <>
-          <div className="d-flex justify-content-between">
-            <h1 className="my-4">{data.character.name} Details</h1>
+          <div className="d-flex justify-content-between ">
+            <h1 className="my-4 text-light">{data.character.name} Details</h1>
             <Link href={"/"}>
-              <div>
-                <FontAwesomeIcon icon={faUndoAlt} size="3x" />
+              <div className="my-4">
+                <FontAwesomeIcon icon={faUndoAlt} size="2x"  />
                 <p>Return</p>
               </div>
             </Link>
@@ -82,7 +82,7 @@ const DetailPage = () => {
               height={300}
             />
             <section className="ms-3">
-              <h2>Data:</h2>
+              <h2 className="text-light">Data:</h2>
               <p className="h5">
                 <strong>Status: </strong>
                 <FontAwesomeIcon
