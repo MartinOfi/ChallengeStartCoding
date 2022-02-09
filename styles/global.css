@@ -6,7 +6,13 @@ html,body{
   margin:0;
   padding: 0;
 }
-
+#__next,body{
+  min-height: 100vh
+}
+.bg-blue{
+  background-color: rgba(1, 122, 243, 0.466);
+}
 @import 'home.css';
 @import 'sidebar.css';
-@import 'card.css'
+@import 'card.css';
+@import 'details.css'

@@ -36,7 +36,6 @@ const CardsContainer = ({ option, search }) => {
     );
   }
   if (error) {
-    console.log(error.message);
     return <h6>Not found, try with other name</h6>;
   }
   return (
