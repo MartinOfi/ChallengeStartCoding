@@ -38,23 +38,25 @@ const CardsContainer = ({ option, search }) => {
   if (error) {
     return <h6>Not found, try with other name</h6>;
   }
+  console.log(data);
+
   return (
     <div className="text-center pb-3">
       <div className="d-flex justify-content-center flex-wrap">
         {data &&
           option == "characters" &&
           data.characters.results.map((item, i) => {
-            return <Card item={item} key={i} />;
+            return <Card item={item} option={option} key={i} />;
           })}
         {data &&
           option == "locations" &&
           data.locations.results.map((item, i) => {
-            return <Card item={item} key={i} />;
+            return <Card item={item} option={option} key={i} />;
           })}
         {data &&
           option == "episodes" &&
           data.episodes.results.map((item, i) => {
-            return <Card item={item} key={i} />;
+            return <Card item={item} option={option} key={i} />;
           })}
       </div>
       <Pagination

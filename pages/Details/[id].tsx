@@ -28,18 +28,18 @@ const DetailPage = () => {
   } = useQuery(DETAILS(router.query.type), queriesVars);
   useEffect(() => {
     if (queryData && !error && !loading) {
-      router.query.type == "character"
+      router.query.type == "characters"
         ? setData(queryData.character)
-        : router.query.type == "location"
+        : router.query.type == "locations"
         ? setData(queryData.location)
         : setData(queryData.episode);
     }
     return null;
   }, [queryData, error, loading]);
   const characters = (): [] => {
-    if (router.query.type == "character") return data.location.residents;
-    if (router.query.type == "location") return data.residents;
-    if (router.query.type == "episode") return data.characters;
+    if (router.query.type == "characters") return data.location.residents;
+    if (router.query.type == "locations") return data.residents;
+    if (router.query.type == "episodes") return data.characters;
   };
   const responsive = {
     superLargeDesktop: {
@@ -60,6 +60,8 @@ const DetailPage = () => {
       items: 1,
     },
   };
+  console.log(data);
+  
   return (
     <div
       className="px-5 text-light d-flex flex-column justify-content-around"
@@ -78,7 +80,7 @@ const DetailPage = () => {
           <h1 className="ms-2">Loading. </h1>
         </div>
       )}
-      {!loading && data.hasOwnProperty("name") && (
+      {!loading && data?.name && (
         <>
           <div className="d-flex justify-content-between">
             <h1 className="mt-4 text-light">{data.name} Details</h1>
@@ -90,16 +92,18 @@ const DetailPage = () => {
             </Link>
           </div>
           <div className="d-flex align-items-center" id="character-data">
-            <img
-              className="rounded"
-              src={data.image}
-              alt="Character Image"
-              width={300}
-              height={300}
-            />
+            {router.query.type == "characters" && (
+              <img
+                className="rounded"
+                src={data.image}
+                alt="Character Image"
+                width={300}
+                height={300}
+              />
+            )}
             <section className="ms-3">
               <h2 className="text-light">Data:</h2>
-              {router.query.type == "character" && (
+              {router.query.type == "characters" && (
                 <>
                   <p className="h5">
                     <strong>Status: </strong>
@@ -128,13 +132,43 @@ const DetailPage = () => {
                   />
                 </>
               )}
-              {!(router.query.type == "episode") && (
+              {!(router.query.type == "episodes") ? (
                 <TextField title="Type" text={data.type} font="fs-4" />
+              ) : (
+                <>
+                  <TextField title="Episode" text={data.episode} font="fs-4" />
+                  <TextField
+                    title="Created on"
+                    text={data.created}
+                    font="fs-4"
+                  />
+                  <TextField
+                    title="Air Date"
+                    text={data.air_date}
+                    font="fs-4"
+                  />
+                </>
+              )}
+              {router.query.type == "locations" && (
+                <>
+                  <TextField
+                    title="Dimension"
+                    text={data.dimension}
+                    font="fs-4"
+                  />
+                </>
               )}
             </section>
           </div>
           <div className="is-clickable">
-            <TextField title="Some Location Residents" font="fs-4" />
+            <TextField
+              title={`${
+                router.query.type == "episodes"
+                  ? "Characters in the episode"
+                  : "Some Location Residents"
+              }`}
+              font="fs-4"
+            />
             <Carousel
               responsive={responsive}
               showDots={false}

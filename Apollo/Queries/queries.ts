@@ -8,7 +8,6 @@ export const GET_CHARACTERS = gql`
       }
       results {
         id
-        species
         name
         image
       }
@@ -22,15 +21,8 @@ export const GET_LOCATIONS = gql`
         pages
       }
       results {
+        id
         name
-        dimension
-        created
-        type
-        residents {
-          name
-          image
-          gender
-        }
       }
     }
   }
@@ -42,17 +34,14 @@ export const GET_EPISODES = gql`
         pages
       }
       results {
+        id
         name
-        episode
-        characters {
-          name
-        }
       }
     }
   }
 `;
 export const DETAILS = (type) => {
-  if (type == "character") {
+  if (type == "characters") {
     return gql`
       query CHARACTER_DETAIL($id: ID!) {
         character(id: $id) {
@@ -81,7 +70,7 @@ export const DETAILS = (type) => {
         }
       }
     `;
-  } else if (type == "location") {
+  } else if (type == "locations") {
     return gql`
       query LOCATION_DETAIL($id: ID!) {
         location(id: $id) {
@@ -102,9 +91,11 @@ export const DETAILS = (type) => {
     return gql`
       query EPISODE_DETAIL($id: ID!) {
         episode(id: $id) {
+          id
           name
           episode
           air_date
+          created
           characters {
             name
             image

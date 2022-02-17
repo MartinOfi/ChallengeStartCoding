@@ -1,10 +1,10 @@
 import { FavoriteStar } from "./favoriteStar";
 import Link from "next/link";
-const Card = ({ item, page = "" }) => {
+const Card = ({ item, page = "", option }) => {
   return (
     <div
-      className="shadow-sm m-3 is-clickable card-total"
-    
+      className="shadow-sm m-3 cursor-pointer card-total"
+      style={{ cursor: "pointer" }}
     >
       {item.hasOwnProperty("image") && (
         <div className="image-icon">
@@ -19,7 +19,7 @@ const Card = ({ item, page = "" }) => {
           href={{
             pathname: `/Details/${item.id}`,
             query: {
-              type:"character"
+              type: option,
             },
           }}
         >

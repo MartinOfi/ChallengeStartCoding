@@ -19,7 +19,9 @@ const Favorites = () => {
       <div className="d-flex justify-content-center flex-wrap">
         {favorites
           ? favorites.slice(0 + 10 * page, 10 + 10 * page).map((item, i) => {
-              return <Card item={item} page="fav" key={i} />;
+              return (
+                <Card item={item} option="characters" page="fav" key={i} />
+              );
             })
           : null}
       </div>
