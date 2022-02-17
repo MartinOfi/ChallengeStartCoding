@@ -50,7 +50,6 @@ const DetailPage = () => {
       id="detail-page"
       style={{
         backgroundImage: "url(../images/background.jpg)",
-        backgroundSize: "100%",
       }}
     >
       {loading && (
@@ -76,6 +75,7 @@ const DetailPage = () => {
           </div>
           <div className="d-flex align-items-center" id="character-data">
             <img
+            className="rounded"
               src={data.character.image}
               alt="Character Image"
               width={300}
@@ -119,7 +119,7 @@ const DetailPage = () => {
               {data.character.location.residents.map((item, index) => {
                 return (
                   <div
-                    className="mx-auto text-center bg-blue"
+                    className="mx-auto text-center bg-blue rounded"
                     style={{ width: "200px", userSelect: "none" }}
                   >
                     <img src={item.image} alt="resident image" width={200} style={{objectFit:"cover"}}/>
