@@ -3,8 +3,8 @@ import Link from "next/link";
 const Card = ({ item, page = "" }) => {
   return (
     <div
-      className="shadow-sm m-3 cursor-pointer card-total"
-      style={{ cursor: "pointer" }}
+      className="shadow-sm m-3 is-clickable card-total"
+    
     >
       {item.hasOwnProperty("image") && (
         <div className="image-icon">

@@ -10,7 +10,7 @@ html,body{
   min-height: 100vh
 }
 .bg-blue{
-  background-color: rgba(1, 122, 243, 0.466);
+  background-color: rgba(1, 122, 243, 0.836);
 }
 @import 'home.css';
 @import 'sidebar.css';

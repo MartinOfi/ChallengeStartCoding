@@ -1,3 +1,17 @@
-#detail-page{
+#detail-page {
   min-height: 100vh;
+  /* Centramos el fondo horizontal y verticalmente */
+  background-position: center center;
+  /* El fonde no se repite */
+  background-repeat: no-repeat;
+  /* Fijamos la imagen a la ventana para que no supere el alto de la ventana */
+  background-attachment: fixed;
+  /* El fonde se re-escala automáticamente */
+  background-size: cover;
+}
+@media only screen and (max-width: 750px) {
+  #character-data {
+    flex-direction: column;
+    justify-content: center;
+  }
 }

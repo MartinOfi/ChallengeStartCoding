@@ -22,7 +22,7 @@ export const FavoriteStar = ({ item, page }) => {
   return (
     <>
       <div
-        className="star"
+        className="is-clickable"
         onClick={() => {
           handeAddAndSetFavorite(item);
         }}
