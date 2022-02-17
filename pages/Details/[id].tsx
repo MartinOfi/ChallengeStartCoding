@@ -12,18 +12,35 @@ import Link from "next/link";
 import { TextField } from "../../components/Details/TextField";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from "react";
 const DetailPage = () => {
+  const [data, setData] = useState<any>({});
   const router = useRouter();
   const queriesVars = {
     variables: {
       id: router.query.id,
     },
   };
-  const { data, error, loading } = useQuery(
-    DETAILS(router.query.type),
-    queriesVars
-  );
-
+  const {
+    data: queryData,
+    error,
+    loading,
+  } = useQuery(DETAILS(router.query.type), queriesVars);
+  useEffect(() => {
+    if (queryData && !error && !loading) {
+      router.query.type == "character"
+        ? setData(queryData.character)
+        : router.query.type == "location"
+        ? setData(queryData.location)
+        : setData(queryData.episode);
+    }
+    return null;
+  }, [queryData, error, loading]);
+  const characters = (): [] => {
+    if (router.query.type == "character") return data.location.residents;
+    if (router.query.type == "location") return data.residents;
+    if (router.query.type == "episode") return data.characters;
+  };
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -43,7 +60,6 @@ const DetailPage = () => {
       items: 1,
     },
   };
-
   return (
     <div
       className="px-5 text-light d-flex flex-column justify-content-around"
@@ -62,53 +78,63 @@ const DetailPage = () => {
           <h1 className="ms-2">Loading. </h1>
         </div>
       )}
-      {!loading && data && (
+      {!loading && data.hasOwnProperty("name") && (
         <>
-          <div className="d-flex justify-content-between" >
-            <h1 className="mt-4 text-light">{data.character.name} Details</h1>
+          <div className="d-flex justify-content-between">
+            <h1 className="mt-4 text-light">{data.name} Details</h1>
             <Link href={"/"}>
               <div className="mt-4 is-clickable">
-                <FontAwesomeIcon icon={faUndoAlt} size="2x"  />
+                <FontAwesomeIcon icon={faUndoAlt} size="2x" />
                 <p>Return</p>
               </div>
             </Link>
           </div>
           <div className="d-flex align-items-center" id="character-data">
             <img
-            className="rounded"
-              src={data.character.image}
+              className="rounded"
+              src={data.image}
               alt="Character Image"
               width={300}
               height={300}
             />
             <section className="ms-3">
               <h2 className="text-light">Data:</h2>
-              <p className="h5">
-                <strong>Status: </strong>
-                <FontAwesomeIcon
-                  color={data.character.status == "Alive" ? "#00FFFF" : "black"}
-                  icon={
-                    data.character.status == "Alive"
-                      ? faHeart
-                      : data.character.status == "Dead"
-                      ? faSkullCrossbones
-                      : data.character.status
-                  }
-                />{" "}
-              </p>
-              <TextField title="Species" text={data.character.species} font="fs-4"/>
-              <TextField title="Type" text={data.character.type} font="fs-4"/>
-              <TextField title="Gender" text={data.character.gender} font="fs-4"/>
-              <TextField title="Species" text={data.character.species} font="fs-4"/>
-              <TextField
-                title="Species"
-                text={`${data.character.species} in dimension ${data.character.origin.dimension}`}
-              font="fs-4"/>
-              <TextField title="Location" text={data.character.location.name} font="fs-4"/>
+              {router.query.type == "character" && (
+                <>
+                  <p className="h5">
+                    <strong>Status: </strong>
+                    <FontAwesomeIcon
+                      color={data.status == "Alive" ? "#00FFFF" : "black"}
+                      icon={
+                        data.status == "Alive"
+                          ? faHeart
+                          : data.status == "Dead"
+                          ? faSkullCrossbones
+                          : data.status
+                      }
+                    />
+                  </p>
+                  <TextField title="Species" text={data.species} font="fs-4" />
+                  <TextField title="Gender" text={data.gender} font="fs-4" />
+                  <TextField
+                    title="Species"
+                    text={`${data.species} in dimension ${data.origin.dimension}`}
+                    font="fs-4"
+                  />
+                  <TextField
+                    title="Location"
+                    text={data.location.name}
+                    font="fs-4"
+                  />
+                </>
+              )}
+              {!(router.query.type == "episode") && (
+                <TextField title="Type" text={data.type} font="fs-4" />
+              )}
             </section>
           </div>
           <div className="is-clickable">
-            <TextField title="Some Location Residents" font="fs-4"/>
+            <TextField title="Some Location Residents" font="fs-4" />
             <Carousel
               responsive={responsive}
               showDots={false}
@@ -116,13 +142,18 @@ const DetailPage = () => {
               itemClass="carousel-item-padding-40-px"
               className="listStyleNone"
             >
-              {data.character.location.residents.map((item, index) => {
+              {characters().map((item: any, index) => {
                 return (
                   <div
                     className="mx-auto text-center bg-blue rounded"
                     style={{ width: "200px", userSelect: "none" }}
                   >
-                    <img src={item.image} alt="resident image" width={200} style={{objectFit:"cover"}}/>
+                    <img
+                      src={item.image}
+                      alt="resident image"
+                      width={200}
+                      style={{ objectFit: "cover" }}
+                    />
                     <p className="fs-4 ">{item.name}</p>
                   </div>
                 );
