@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   GET_CHARACTERS,
   GET_EPISODES,
@@ -8,6 +8,7 @@ import {
 import Card from "../Card";
 import { Pagination, Space, Spin } from "antd";
 import "antd/dist/antd.css";
+import { FavoritesContext } from "../../context/FavoritesProvider";
 interface Props {
   option: string;
   search: string;
@@ -19,7 +20,7 @@ interface queriesVars {
   };
 }
 const CardsContainer = ({ option, search }: Props) => {
-  const [page, setPage] = useState<number>(1);
+  const { page, changePage } = useContext(FavoritesContext);
   const queriesVars: queriesVars = {
     variables: {
       search: search.length > 2 ? search : "",
@@ -67,7 +68,7 @@ const CardsContainer = ({ option, search }: Props) => {
       </div>
       <Pagination
         current={page}
-        onChange={(e) => setPage(e)}
+        onChange={(e) => changePage(option,e)}
         total={
           option == "characters"
             ? data.characters.info.pages * 10

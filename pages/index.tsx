@@ -5,8 +5,8 @@ import Search from "../components/Search";
 import SideBarContainer from "../components/SideBar";
 import { FavoritesContext } from "../context/FavoritesProvider";
 export default function Home() {
-    const [search, setSearch] = useState<string>("");
-    const { section,setSection } = useContext(FavoritesContext);
+  const { section, setSection, search, setSearch } =
+    useContext(FavoritesContext);
   return (
     <div className="principal-container">
       <SideBarContainer setSection={setSection} />

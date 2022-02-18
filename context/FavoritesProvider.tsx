@@ -5,6 +5,16 @@ export const FavoritesContext = createContext(null);
 export const FavoritesProvider = ({ children }) => {
   const [section, setSection] = useState<string>("favorites");
   const [favorites, setFavorites] = useState<any[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [search, setSearch] = useState<string>("");
+  const changePage = (selectionSelect, page) => {
+    setPage(page);
+    if (selectionSelect !== section) {
+      setSection(selectionSelect);
+    } else {
+      setPage(page);
+    }
+  };
   useEffect(() => {
     const favoritesStorage: string = window.localStorage.getItem("favorites");
     if (favoritesStorage) {
@@ -35,7 +45,9 @@ export const FavoritesProvider = ({ children }) => {
     }
   };
   return (
-    <FavoritesContext.Provider value={{ favorites, handleAddFavorite,section, setSection }}>
+    <FavoritesContext.Provider
+      value={{ favorites, handleAddFavorite, section, setSection,page,changePage,search, setSearch }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
