@@ -193,6 +193,7 @@ const DetailPage = () => {
                   <div
                     className="mx-auto text-center bg-blue rounded"
                     style={{ width: "200px", userSelect: "none" }}
+                    key={index}
                   >
                     <img
                       src={item.image}
