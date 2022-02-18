@@ -21,6 +21,7 @@ interface queriesVars {
 }
 const CardsContainer = ({ option, search }: Props) => {
   const { page, changePage } = useContext(FavoritesContext);
+  
   const queriesVars: queriesVars = {
     variables: {
       search: search.length > 2 ? search : "",

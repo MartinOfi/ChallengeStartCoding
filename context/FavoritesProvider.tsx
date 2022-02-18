@@ -7,6 +7,10 @@ export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
+  const newSearch=(input)=>{
+    setSearch(input)
+    page != 1 && setPage(1)
+  }
   const changePage = (selectionSelect, page) => {
     setPage(page);
     if (selectionSelect !== section) {
@@ -46,7 +50,7 @@ export const FavoritesProvider = ({ children }) => {
   };
   return (
     <FavoritesContext.Provider
-      value={{ favorites, handleAddFavorite, section, setSection,page,changePage,search, setSearch }}
+      value={{ favorites, handleAddFavorite, section, setSection,page,changePage,search, newSearch }}
     >
       {children}
     </FavoritesContext.Provider>

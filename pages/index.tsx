@@ -5,14 +5,14 @@ import Search from "../components/Search";
 import SideBarContainer from "../components/SideBar";
 import { FavoritesContext } from "../context/FavoritesProvider";
 export default function Home() {
-  const { section, setSection, search, setSearch } =
+  const { section, setSection, search, newSearch } =
     useContext(FavoritesContext);
   return (
     <div className="principal-container">
       <SideBarContainer setSection={setSection} />
       <div className="dashboard">
         {!(section == "favorites") && (
-          <Search search={search} setSearch={setSearch} />
+          <Search search={search} setSearch={newSearch} />
         )}
         {section == "favorites" ? (
           <Favorites />
