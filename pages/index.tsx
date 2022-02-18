@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CardsContainer from "../components/Characters/CharactersContainer";
 import Favorites from "../components/Favorites";
 import Search from "../components/Search";
 import SideBarContainer from "../components/SideBar";
+import { FavoritesContext } from "../context/FavoritesProvider";
 export default function Home() {
-  const [section, setSection] = useState<string>("favorites");
-  const [search, setSearch] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
+    const { section,setSection } = useContext(FavoritesContext);
   return (
     <div className="principal-container">
       <SideBarContainer setSection={setSection} />
@@ -15,13 +16,11 @@ export default function Home() {
         )}
         {section == "favorites" ? (
           <Favorites />
-        ) : search.length > 2 ? (
+        ) : (
           <>
             <h1 className="my-2 text-capitalize text-center">{section}</h1>
             <CardsContainer option={section} search={search} />
           </>
-        ) : (
-          <h5 className="text-center my-2">Enter at least 3 letters</h5>
         )}
       </div>
     </div>

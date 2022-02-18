@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const FavoritesContext = createContext(null);
 
 export const FavoritesProvider = ({ children }) => {
+  const [section, setSection] = useState<string>("favorites");
   const [favorites, setFavorites] = useState<any[]>([]);
   useEffect(() => {
     const favoritesStorage: string = window.localStorage.getItem("favorites");
@@ -34,7 +35,7 @@ export const FavoritesProvider = ({ children }) => {
     }
   };
   return (
-    <FavoritesContext.Provider value={{ favorites, handleAddFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, handleAddFavorite,section, setSection }}>
       {children}
     </FavoritesContext.Provider>
   );

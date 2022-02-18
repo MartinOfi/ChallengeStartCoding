@@ -8,7 +8,7 @@ const Search = ({ search, setSearch }:Props) => {
       <input
         type="search"
         className="form-control rounded my-3 mx-5"
-        placeholder="Search"
+        placeholder="Enter at least 3 letters"
         aria-describedby="search-addon"
         onChange={(e) => setSearch(e.target.value)}
       />

@@ -22,7 +22,7 @@ const CardsContainer = ({ option, search }: Props) => {
   const [page, setPage] = useState<number>(1);
   const queriesVars: queriesVars = {
     variables: {
-      search: search,
+      search: search.length > 2 ? search : "",
       page: page,
     },
   };
