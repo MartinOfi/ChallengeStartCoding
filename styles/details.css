@@ -13,5 +13,9 @@
   #character-data {
     flex-direction: column;
     justify-content: center;
+    
+  }
+  #character-data section{
+    text-align: center;
   }
 }
