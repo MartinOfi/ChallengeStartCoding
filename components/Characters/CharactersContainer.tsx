@@ -8,9 +8,19 @@ import {
 import Card from "../Card";
 import { Pagination, Space, Spin } from "antd";
 import "antd/dist/antd.css";
-const CardsContainer = ({ option, search }) => {
-  const [page, setPage] = useState(1);
-  const queriesVars = {
+interface Props {
+  option: string;
+  search: string;
+}
+interface queriesVars {
+  variables: {
+    search: string;
+    page: number;
+  };
+}
+const CardsContainer = ({ option, search }: Props) => {
+  const [page, setPage] = useState<number>(1);
+  const queriesVars: queriesVars = {
     variables: {
       search: search,
       page: page,

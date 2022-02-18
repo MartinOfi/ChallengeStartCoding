@@ -1,6 +1,11 @@
 import { FavoriteStar } from "./favoriteStar";
 import Link from "next/link";
-const Card = ({ item, page = "", option }) => {
+interface Props {
+  item:any;
+  page?:string;
+  option:string;
+}
+const Card = ({ item, page = "", option }:Props) => {
   return (
     <div
       className="shadow-sm m-3 cursor-pointer card-total"

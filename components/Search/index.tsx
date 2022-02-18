@@ -1,15 +1,17 @@
-const Search = ({ search, setSearch }) => {
+interface Props {
+  search: string;
+  setSearch: any;
+}
+const Search = ({ search, setSearch }:Props) => {
   return (
     <div className="input-group rounded ">
       <input
-      
         type="search"
         className="form-control rounded my-3 mx-5"
         placeholder="Search"
         aria-describedby="search-addon"
-        onChange={(e)=>setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
-      
     </div>
   );
 };

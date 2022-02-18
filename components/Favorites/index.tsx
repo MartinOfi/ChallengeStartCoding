@@ -4,8 +4,8 @@ import Card from "../Card";
 
 const Favorites = () => {
   const { favorites } = useContext(FavoritesContext);
-  const [page, setPage] = useState(0);
-  const max = useMemo(() => {
+  const [page, setPage] = useState<number>(0);
+  const max: number = useMemo(() => {
     let acum = 0;
     for (let i = 0; i * 10 < favorites.length; i++) {
       acum = i;

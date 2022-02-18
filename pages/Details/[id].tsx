@@ -14,12 +14,17 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
 import { FavoriteStar } from "../../components/Card/favoriteStar";
+interface QueriesVars {
+  variables: {
+    id: string;
+  };
+}
 const DetailPage = () => {
   const [data, setData] = useState<any>({});
   const router = useRouter();
-  const queriesVars = {
+  const queriesVars: QueriesVars = {
     variables: {
-      id: router.query.id,
+      id: router.query.id.toString(),
     },
   };
   const {
@@ -61,8 +66,6 @@ const DetailPage = () => {
       items: 1,
     },
   };
-  console.log(data);
-
   return (
     <div
       className="px-5 text-light d-flex flex-column justify-content-around"
@@ -94,18 +97,16 @@ const DetailPage = () => {
           </div>
           <div className="d-flex align-items-center" id="character-data">
             {router.query.type == "characters" && (
-           
-                <div className="image-icon">
-                  <img
-                    className="rounded"
-                    src={data.image}
-                    alt="Character Image"
-                    width={300}
-                    height={300}
-                  />
-                  <FavoriteStar item={data} page={router.query.type} />
-                </div>
-              
+              <div className="image-icon">
+                <img
+                  className="rounded"
+                  src={data.image}
+                  alt="Character Image"
+                  width={300}
+                  height={300}
+                />
+                <FavoriteStar item={data} page={router.query.type} />
+              </div>
             )}
             <section className="ms-3">
               {router.query.type == "characters" && (
