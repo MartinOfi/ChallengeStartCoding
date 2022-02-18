@@ -25,25 +25,27 @@ const Favorites = () => {
             })
           : null}
       </div>
-      <div
-        className="d-flex justify-content-between mx-auto"
-        style={{ width: "200px" }}
-      >
-        <button
-          className="btn btn-primary"
-          onClick={() => setPage(page - 1)}
-          disabled={page == 0}
+      {favorites.length > 10 && (
+        <div
+          className="d-flex justify-content-between mx-auto"
+          style={{ width: "200px" }}
         >
-          Prev
-        </button>
-        <button
-          className="btn btn-primary"
-          onClick={() => setPage(page + 1)}
-          disabled={page == max}
-        >
-          Next
-        </button>
-      </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => setPage(page - 1)}
+            disabled={page == 0}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => setPage(page + 1)}
+            disabled={page == max}
+          >
+            Next
+          </button>
+        </div>
+      ) }
     </div>
   );
 };
