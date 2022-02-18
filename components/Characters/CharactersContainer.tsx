@@ -1,13 +1,11 @@
-import { ApolloError, useQuery } from "@apollo/client";
-import { useContext, useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import {
   GET_CHARACTERS,
   GET_EPISODES,
   GET_LOCATIONS,
 } from "../../Apollo/Queries/queries";
-import { FavoritesContext } from "../../context/FavoritesProvider";
 import Card from "../Card";
-import Favorites from "../Favorites";
 import { Pagination, Space, Spin } from "antd";
 import "antd/dist/antd.css";
 const CardsContainer = ({ option, search }) => {
@@ -36,10 +34,8 @@ const CardsContainer = ({ option, search }) => {
     );
   }
   if (error) {
-    return <h6>Not found, try with other name</h6>;
+    return <h6 className="ms-5 ps-2">Not found, try with other name</h6>;
   }
-  console.log(data);
-
   return (
     <div className="text-center pb-3">
       <div className="d-flex justify-content-center flex-wrap">

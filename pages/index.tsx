@@ -10,8 +10,9 @@ export default function Home() {
     <div className="principal-container">
       <SideBarContainer setSection={setSection} />
       <div className="dashboard">
-      
-        <Search search={search} setSearch={setSearch} />
+        {!(section == "favorites") && (
+          <Search search={search} setSearch={setSearch} />
+        )}
         {section == "favorites" ? (
           <Favorites />
         ) : search.length > 2 ? (

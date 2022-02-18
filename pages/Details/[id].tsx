@@ -13,6 +13,7 @@ import { TextField } from "../../components/Details/TextField";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
+import { FavoriteStar } from "../../components/Card/favoriteStar";
 const DetailPage = () => {
   const [data, setData] = useState<any>({});
   const router = useRouter();
@@ -61,7 +62,7 @@ const DetailPage = () => {
     },
   };
   console.log(data);
-  
+
   return (
     <div
       className="px-5 text-light d-flex flex-column justify-content-around"
@@ -93,18 +94,23 @@ const DetailPage = () => {
           </div>
           <div className="d-flex align-items-center" id="character-data">
             {router.query.type == "characters" && (
-              <img
-                className="rounded"
-                src={data.image}
-                alt="Character Image"
-                width={300}
-                height={300}
-              />
+           
+                <div className="image-icon">
+                  <img
+                    className="rounded"
+                    src={data.image}
+                    alt="Character Image"
+                    width={300}
+                    height={300}
+                  />
+                  <FavoriteStar item={data} page={router.query.type} />
+                </div>
+              
             )}
             <section className="ms-3">
-              <h2 className="text-light">Data:</h2>
               {router.query.type == "characters" && (
                 <>
+                  <h2 className="text-light">Data:</h2>
                   <p className="h5">
                     <strong>Status: </strong>
                     <FontAwesomeIcon
@@ -154,6 +160,11 @@ const DetailPage = () => {
                   <TextField
                     title="Dimension"
                     text={data.dimension}
+                    font="fs-4"
+                  />
+                  <TextField
+                    title="Created on"
+                    text={data.created}
                     font="fs-4"
                   />
                 </>

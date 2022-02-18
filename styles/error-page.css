@@ -1,0 +1,15 @@
+#error-page{
+  min-height: 100vh;
+   /* Centramos el fondo horizontal y verticalmente */
+   background-position: center center;
+   /* El fonde no se repite */
+   background-repeat: no-repeat;
+   /* Fijamos la imagen a la ventana para que no supere el alto de la ventana */
+   background-attachment: fixed;
+   /* El fonde se re-escala automáticamente */
+   background-size: cover;
+}
+.btn-pink{
+  background-color: rgb(195, 35, 97,0.8) !important;
+  border-color: rgb(195, 35, 97) !important;
+}

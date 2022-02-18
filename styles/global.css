@@ -15,4 +15,5 @@ html,body{
 @import 'home.css';
 @import 'sidebar.css';
 @import 'card.css';
-@import 'details.css'
+@import 'details.css';
+@import 'error-page.css'
