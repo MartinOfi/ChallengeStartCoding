@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { FavoriteStar } from "../../components/Card/favoriteStar";
 interface QueriesVars {
   variables: {
-    id: string;
+    id: string | string[];
   };
 }
 const DetailPage = () => {
@@ -24,7 +24,7 @@ const DetailPage = () => {
   const router = useRouter();
   const queriesVars: QueriesVars = {
     variables: {
-      id: router.query.id.toString(),
+      id: router.query.id,
     },
   };
   const {
